@@ -1,0 +1,188 @@
+Conta de armazenamento:  pode conter vários recursos.
+
+Diminuir a latência:  trocar localização geográfica para a região mais próxima.
+
+Replicação: mudar por localização geografica.
+
+LRS: Redundância Local.
+-> replica o dado no mesmo data center.
+
+ZRS:(redundância de Zona)
+-> cópias em data centers diferentes.
+-> mesma região
+
+ZRS: redundância geografica. 
+->3 copias no mesmo data center +3 copias em um data center de outra região.
+
+RA-GRS:
+redundância geografica e acesso a leitrua. 
+-> onde o usuário estiver mais perto ele pode acessar.
+
+____________________
+
+
+Logs
+Home > Storage accounts > valesiscomexccttbs - Containers > logs
+
+____________________
+
+
+
+-> Criação de Azure File:
+
+Conectando no Windows para criação de diretório mapeado para a Conta File do Azure.
+
+Mapear unidade de rede >  letra > passar argumento  -Root > Conectar usando credenciais diferentes > 
+Inserir credenciais:
+	-ArgumentList
+	-Convert
+
+SnapShot:  instantâneos ( grava os estado atual de um arquivo quando tem um mudança).
+- histórico
+- Conta de Armazenamento >  botão direito...
+
+->Instantaneos: snapshtop . Só funcionam manualmente.
+- possivel no no proporio windows ou no portal azure.
+
+-------------------------
+
+Aprendemos:
+
+O que é uma conta de armazenamento;
+As propriedades de conta de armazenamento;
+Como funcionam as replicações LRS, ZRS, GRS e RA-GRS;
+Como se conectar a um Arquivo do Azure (Azure File);
+
+-------------------------
+Fonte:  
+
+https://dzone.com/articles/partitionkey-and-rowkey
+
+https://docs.microsoft.com/en-us/rest/api/storageservices/Designing-a-Scalable-Partitioning-Strategy-for-Azure-Table-Storage?redirectedfrom=MSDN
+
+Azure Table Storage: (Armazenamento de tabela Azure.)
+- Armazenamento de dados Estruturados;
+- As entidades são semelhanteas a a uma linha em um banco relacional.
+
+
+Propriedade Timestamp:
+A Timestamppropriedade é um DateTimevalor que é mantido no lado do servidor para registrar a hora em que uma entidade foi modificada pela última vez.
+
+PartitionKey: inserido manualmente.
+Todas entidades com mesmo PartitionKey ->  
+ficará limitado ao tamanho das máquinas de armazenamento para a quantidade de armazenamento que pode usar. Além disso, você restringirá a taxa de transferência máxima, pois há muitas entidades na mesma partição.
+-->terá problemas de dimensionamento em algum momento.
+Mesmo PartitionKey são armazenados na mesma tabela.
+
+Cada entidade com um PartitionKey -> 
+Você pode fazer isso e todas as entidades armazenadas terminarão em sua própria partição, mas descobrirá que a consulta de seus dados se torna mais difícil.
+
+
+PartitionKey + RowKey formam o identificador exclusivo composto para uma entidade. -> Chave Primária.
+RowKey no armazenamento de tabelas é uma coisa muito simples: é a sua "chave primária" dentro de uma partição.
+
+
+PartitionKey e RowKey e desempenho:
+
+Estratégias para o armazenamento no Azure:
+
+Chave primaria da tabela:
+
+O índice agrupado é classificado pelo PartitionKey em ordem crescente e depois pelo RowKey em ordem crescente.
+
+*Partições de tabela:
+As partições são sempre servidas em um servidor de partição. 
+Cada servidor de partição pode servir uma ou mais partições.
+
+*Escalabilidade:
+ Para balanceamento de carga ideal do tráfego, você deve usar mais partições para que o armazenamento da Tabela do Azure possa distribuir as partições para mais servidores de partição.
+
+
+
+
+Analise de Consultas: 
+
+Chaves de Partição e Chaves de Linha determinam como seus dados são particionados automaticamente pelo serviço de armazenamento e a maneira como suas consultas serão executadas.
+
+Numa consultar primeiro vai na partição e depois na RowKey.
+
+- Consultas mais seletivas são mais eficientes durante as verificações de intervalo de linhas.
+- Transações de grupo de entidades: agrupar PartitionKeyem numeros sequenciais.
+- Um índice no armazenamento da Tabela do Azure sempre consiste nas propriedades PartitionKey e RowKey .
+- A seletividade de consulta é uma medida de quantas linhas devem ser iteradas para cada partição. 
+
+-> Liste todas as propriedades usadas nas consultas.
+- performance de SELECT.
+
+
+Balanceamento de carga:
+ Os erros são retornados quando o sistema está com balanceamento de carga. Ao lidar com esses erros usando uma estratégia de repetição, seu aplicativo pode lidar melhor com cargas de pico.
+
+-> Consulta por propriedades diferentes de PartitionKey  e RowKey ?
+
+Exemplo de Consultas em C#:
+
+https://docs.microsoft.com/bs-latn-ba/azure/storage/tables/table-storage-design-patterns#executing-a-point-query-using-the-storage-client-library
+
+---------------
+
+Uma Varredura de Tabela não inclui o PartitionKey e é muito ineficiente porque pesquisa todas as partições que compõem sua tabela por qualquer entidade correspondente. Ele executará uma varredura de tabela, independentemente de seu filtro 
+usar ou não o RowKey . Por exemplo: $ filter = Sobrenome eq 'Jones'
+
+
+
+	
+--------------------------
+SISCOMEX:  Identificador de recepção não é unico por partição ?
+De onde surge esse valor ?
+
+StatusCode <> 200
+
+
+Como alterar a RowKey ?
+
+Soluções:
+Criar outra conta de armazenamento onde é configurado backup da conta de armazenamento de produção.
+Ver se é possível fazer isso com Azure Table Storage.
+
+--------------------------
+
+
+*******************************************************************************
+Leitura Recomendada:
+
+Problemas   e soluções.
+https://docs.microsoft.com/bs-latn-ba/azure/storage/tables/table-storage-design-patterns#retrieving-multiple-entities-using-linq
+
+
+Fazendo operaçõe com base no select:
+
+https://scotthelme.co.uk/working-with-azure-table-storage/
+
+
+*******************************************************************************
+
+
+Criando recurso de backcup.
+- localização deve ser a mesma do recurso que se deseja fazer o backup.
+-> Conceito de cofre. Onde ficam os backups.
+
+-criação de politica
+-criação de backup
+
+
+-> Backup sob demanada.
+-> Recuperando backup: 
+
+
+--------------------------------------------------------
+
+Como criar instantâneos (snapshot) de Azure Files;
+O que é um cofre de Recovery Services;
+Como criar políticas de backup;
+Como recuperar backup;
+
+--------------------------------------------------------
+
+
+
