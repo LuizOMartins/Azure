@@ -20,14 +20,6 @@ redundância geografica e acesso a leitrua.
 
 ____________________
 
-
-Logs
-Home > Storage accounts > valesiscomexccttbs - Containers > logs
-
-____________________
-
-
-
 -> Criação de Azure File:
 
 Conectando no Windows para criação de diretório mapeado para a Conta File do Azure.
@@ -131,21 +123,6 @@ usar ou não o RowKey . Por exemplo: $ filter = Sobrenome eq 'Jones'
 
 
 
-	
---------------------------
-SISCOMEX:  Identificador de recepção não é unico por partição ?
-De onde surge esse valor ?
-
-StatusCode <> 200
-
-
-Como alterar a RowKey ?
-
-Soluções:
-Criar outra conta de armazenamento onde é configurado backup da conta de armazenamento de produção.
-Ver se é possível fazer isso com Azure Table Storage.
-
---------------------------
 
 
 *******************************************************************************
