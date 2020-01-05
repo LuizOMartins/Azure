@@ -182,7 +182,83 @@ O que é um cofre de Recovery Services;
 Como criar políticas de backup;
 Como recuperar backup;
 
+
 --------------------------------------------------------
+
+Serviço Blob: 
+
+Blob: binary large object.
+exemplos de arquivos de podem ser utilizados com blob. (imagem, pdf, vhd)
+
+
+Container:  
+- um container para cada tipo de arquivo.
+- tipos de acesso.
+
+
+Conectando com aplicação: 
+
+
+- Funcionam do mesmo jeito.
+- existe duas para manter a aplicação rodando caso uma delas seja comprometida.
+key1:
+key2:
+
+SAS: Shared Acess Signature. -> Assunatura de acesso compartilhado.
+
+Assinatura de acesso compartilhado: definição de escopo com a connection String.
+- gerenciamento de permissão.
+- controle de recursos.
+- controle de data.
+
+Permissões:
+gravar: aplicação pega um blob e altera seu conteudo.
+adicionar: ja existe um blob a aplicação vai adicionar conteudo.
+criar: criar blobs no container 
+
+
+Como criar containers de blobs;
+Como funcionam as chaves de uma conta de armazenamento;
+Políticas de acesso Particular/blob/container;
+Shared Access Signature;
+Como compartilhar blobs com SAS;
+Como gerar connection string com SAS;
+
+--------------------------------------------------------
+
+Exclusão reversivel: recuperar blobs quando apagados.
+
+--------------------------------------------------------
+
+
+AzCopy:  copiar BLOBs ou arquivos de ou para uma conta de armazenamento. 
+
+azcopy login /Tenant:ID_DO_DIRETORIO_DA_CONTA
+
+Como usar e como funciona o AzCopy;
+O Azure Storage Explorer;
+Como é realizada a cópia por meio destas ferramentas;
+
+
+Azure Store Explorer: explorar recursos de storage.
+
+
+Custos:
+
+Desenpenho Standat ou premoium
+Replicação
+camada de acesso
+
+-> Calculadora de preços Azure.
+
+Os custos de Azure File e Blobs;
+Como são calculados os custos de snapshots;
+O custo de transferência para replicação GRS;
+
+
+
+Azure Armazenamento: trabalhando com file e blob.
+
 
 
 
