@@ -1,0 +1,22 @@
+Azure Function: pequenos codigo que funcionam de maneira reativa.
+- só cobra quando utilizado
+
+Serverless: gerencie o App, não a infraestrutura.
+
+Arquitetura Azure Function:
+
+Trigger: evento que dispara a function. + Codigo. -> Azure Function.
+
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+Ambiente:
+
+Node 10.16.0
+VS Studio Code.
+-> Extesções > Azure Functions
+ 
+ npm install +g -azure-functions-core-tools
+ 
+ 
+ F5 > teste de função.
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
