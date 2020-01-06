@@ -18,5 +18,10 @@ VS Studio Code.
  npm install +g -azure-functions-core-tools
  
  
- F5 > teste de função.
+ F5 > teste de função localmente.
+ 
 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+Fazendo deploy:
+
+botao direito na function >  deploy to Function App...
